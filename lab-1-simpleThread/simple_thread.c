@@ -40,8 +40,7 @@ int main (int argc, char *argv[])
        pthread_create(&threads[i],   
                       (void *)0,     
                       counterThread, 
-                      (void *)&(threadParams[i]) 
-                     );
+                      (void *)&(threadParams[i]));
    }
 
    for(i = 0; i < NUM_THREADS; i++)
