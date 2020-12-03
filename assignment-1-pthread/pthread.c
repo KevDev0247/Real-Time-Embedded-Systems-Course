@@ -21,8 +21,7 @@ int main (int argc, char *argv[])
 {
    int rc;
    int i = 0;
-   
-   syslog(LOG_INFO, system("uname -a"));
+
    syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Hello World from Main!\n");
 
    threadParams[i].threadIdx = i;
