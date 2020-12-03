@@ -1,31 +1,9 @@
-INCLUDE_DIRS = 
-LIB_DIRS = 
-CC=gcc
+#CFLAGS = -DDEBUG
+CFLAGS =
 
-CDEFS=
-CFLAGS= -O3 $(INCLUDE_DIRS) $(CDEFS)
-LIBS= 
-
-HFILES= 
-CFILES= pthread.c
-
-SRCS= ${HFILES} ${CFILES}
-OBJS= ${CFILES:.c=.o}
-
-all:	pthread
+beowulfpc: inc_dec_thread.c
+	gcc $(CFLAGS) -o inc_dec_thread  inc_dec_thread.c -lrt -pthread
 
 clean:
-	-rm -f *.o *.d
-	-rm -f perfmon pthread
+	rm -f inc_dec_thread
 
-distclean:
-	-rm -f *.o *.d
-	-rm -f pthread
-
-pthread: pthread.o
-	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $@.o -lpthread
-
-depend:
-
-.c.o:
-	$(CC) $(CFLAGS) -c $<
