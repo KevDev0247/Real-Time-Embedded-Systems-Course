@@ -108,10 +108,10 @@ void* counterThread(void *threadp)
 	stop = ((stopTime.tv_sec * 1000000.0) + stopTime.tv_usec) / 1000000.0;
 
 	printf("\nThread idx = %d, sum[0...%d] = %d, running on CPU = %d, start = %lf, stop = %lf",
-		threadParams->threadIdx, 
-		threadParams->threadIdx, 
-		sum, sched_getcpu(), 
-		start, stop);
+		   threadParams->threadIdx, 
+		   threadParams->threadIdx, 
+		   sum, sched_getcpu(), 
+		   start, stop);
 }
 
 void *starterThread(void *threadp)
@@ -125,9 +125,9 @@ void *starterThread(void *threadp)
 		threadParams[i].threadIdx = i;
 
 		pthread_create(&threads[i], 
-					         &fifo_sched_attr, 
-					         counterThread, 
-			             (void*)&(threadParams[i]));
+					   &fifo_sched_attr, 
+					   counterThread, 
+			           (void*)&(threadParams[i]));
 	}
 
 	for (i = 0; i < NUM_THREADS; i++)
