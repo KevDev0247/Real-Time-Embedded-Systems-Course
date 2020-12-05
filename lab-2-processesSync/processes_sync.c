@@ -15,7 +15,7 @@ int main()
 {
 	int i = 0;
 	int childPID;
-	int returnCode;
+	int rc;
 	int stat;
 
 	char syncSemCName[] = "/processesCsync";

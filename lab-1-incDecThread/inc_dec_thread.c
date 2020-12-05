@@ -11,13 +11,9 @@ typedef struct
 } threadParams_t;
 
 
-// POSIX thread declarations and scheduling attributes
-//
 pthread_t threads[2];
 threadParams_t threadParams[2];
 
-
-// Unsafe global
 int gsum=0;
 
 void *incThread(void *threadp)
