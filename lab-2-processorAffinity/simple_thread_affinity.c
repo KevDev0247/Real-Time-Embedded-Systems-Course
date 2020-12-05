@@ -124,11 +124,11 @@ void *starterThread(void *threadp)
 	{
 		threadParams[i].threadIdx = i;
 
-		pthread_create(&threads[i], 
-					   &fifo_sched_attr, 
-					   counterThread, 
-			           (void*)&(threadParams[i]));
-	}
+		pthread_create(&threads[i],
+				       &fifo_sched_attr,
+				       counterThread, 
+				       (void*)&(threadParams[i]));
+	} 
 
 	for (i = 0; i < NUM_THREADS; i++)
 	{
