@@ -167,10 +167,10 @@ int main(int argc, char *argv[])
 		printf("\n");
 	}
 
-	pthread_create(&startThread, 
-				   &fifo_sched_attr, 
-				   starterThread, 
-				   (void*)0);
+	pthread_create(&startThread,
+		&fifo_sched_attr,
+		starterThread, 
+		(void*)0);
 
 	pthread_join(startThread, NULL);
 
