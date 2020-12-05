@@ -168,9 +168,9 @@ int main(int argc, char *argv[])
 	}
 
 	pthread_create(&startThread,
-		&fifo_sched_attr,
-		starterThread, 
-		(void*)0);
+		           &fifo_sched_attr,
+		           starterThread, 
+		           (void*)0);
 
 	pthread_join(startThread, NULL);
 
