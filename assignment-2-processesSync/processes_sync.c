@@ -24,38 +24,38 @@ int main()
 	sem_t *syncSemC, *syncSemP;
 	pid_t thisChildPID;
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] processes\n");
+	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] processes\n");
 
 	syncSemC = sem_open(syncSemCName, O_CREAT, 0700, 0);
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] syncSemC created\n");
+	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] syncSemC created\n");
 
 	syncSemP = sem_open(syncSemPName, O_CREAT, 0700, 0);
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] syncSemP created\n");
+	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] syncSemP created\n");
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Processes semaphores set up, calling fork\n");
+	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Processes semaphores set up, calling fork\n");
 
 	if ((childPID = fork()) == 0)  // Child: the following code runs on the child process
 	{
 		while (i < 3)
 		{
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Child: taking syncC semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Child: taking syncC semaphore\n");
 			if (sem_wait(syncSemC) < 0)
 			{
 				perror("sem_wait syncSemC Child");
 			}
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Child: got syncC semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Child: got syncC semaphore\n");
 
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Child: posting syncP Parent semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Child: posting syncP Parent semaphore\n");
 			if (sem_post(syncSemP) < 0)
 			{
 				perror("sem_post syncSemP Child");
 			}
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Child: posted syncP Parent semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Child: posted syncP Parent semaphore\n");
 
 			i++;
 		}
 
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Child is shutting down\n");
+		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Child is shutting down\n");
 		if (sem_close(syncSemP) < 0)
 		{
 			perror("sem_close syncSemP Child");
@@ -71,28 +71,28 @@ int main()
 	{
 		while (i < 3) 
 		{
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Parent: posting syncC semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Parent: posting syncC semaphore\n");
 			if (sem_post(syncSemC) < 0)
 			{
 				perror("sem_post syncSemC Parent");
 			}
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Parent: posted syncC semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Parent: posted syncC semaphore\n");
 
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Parent: taking syncP semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Parent: taking syncP semaphore\n");
 			if (sem_wait(syncSemP) < 0)
 			{
 				perror("sem_wait syncSemP Parent");
 			}
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Parent: got syncP semaphore\n");
+			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Parent: got syncP semaphore\n");
 
 			i++;
 		}
 
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Parent is waiting for child to terminate\n");
+		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Parent is waiting for child to terminate\n");
 
 		thisChildPID = wait(&stat);
 
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Parent is shutting down\n");
+		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:2] Parent is shutting down\n");
 
 		if (sem_close(syncSemC) < 0)
 		{
