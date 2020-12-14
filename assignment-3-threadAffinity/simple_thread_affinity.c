@@ -38,16 +38,16 @@ void print_scheduler(void)
 	switch (schedType)
 	{
 		case SCHED_FIFO:
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] Pthread policy is SCHED_FIFO\n");
+			syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] Pthread policy is SCHED_FIFO\n");
 			break;
 		case SCHED_OTHER:
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] Pthread policy is SCHED_OTHER\n");
+			syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] Pthread policy is SCHED_OTHER\n");
 			break;
 		case SCHED_RR:
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] Pthread policy is UNKNOWN\n");
+			syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] Pthread policy is UNKNOWN\n");
 			break;
 		default:
-			syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] Pthread policy is UNKNOWN\n");
+			syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] Pthread policy is UNKNOWN\n");
 	}
 }
 
@@ -56,7 +56,7 @@ void set_scheduler(void)
 	int max_prio, scope, rc, cpuidx;
 	cpu_set_t cpuset;
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] INITIAL ");
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] INITIAL ");
 	print_scheduler();
 
 	pthread_attr_init(&fifo_sched_attr);
@@ -78,7 +78,7 @@ void set_scheduler(void)
 
 	pthread_attr_setschedparam(&fifo_sched_attr, &fifo_param);
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] ADJUSTED ");
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] ADJUSTED ");
 	print_scheduler();
 }
 
@@ -107,7 +107,7 @@ void* counterThread(void *threadp)
 	gettimeofday(&stopTime, 0);
 	stop = ((stopTime.tv_sec * 1000000.0) + stopTime.tv_usec) / 1000000.0;
 
-	syslog(LOG_INFO, "\n[COURSE:1][ASSIGNMENT:3] ADJUSTED Thread idx = %d, sum[0...%d] = %d, running on CPU = %d, start = %lf, stop = %lf",
+	syslog(LOG_INFO, "\n[COURSE:5623][ASSIGNMENT:4] ADJUSTED Thread idx = %d, sum[0...%d] = %d, running on CPU = %d, start = %lf, stop = %lf",
 		threadParams->threadIdx,
 		threadParams->threadIdx,
 		sum, sched_getcpu(),
@@ -118,7 +118,7 @@ void *starterThread(void *threadp)
 {
 	int i, rc;
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] starter thread running on CPU = %d\n", sched_getcpu());
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] starter thread running on CPU = %d\n", sched_getcpu());
 
 	for (i = 0; i < NUM_THREADS; i++)
 	{
@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] main thread running on CPU=%d, CPUs =", sched_getcpu());
+		syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] main thread running on CPU=%d, CPUs =", sched_getcpu());
 
 		for (j = 0; j < CPU_SETSIZE; j++)
 		{
@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 				printf(" %d", j);
 			}
 		}
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:3] \n");
+		syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:4] \n");
 	}
 
 	pthread_create(&startThread,
@@ -174,5 +174,5 @@ int main(int argc, char *argv[])
 
 	pthread_join(startThread, NULL);
 
-	syslog(LOG_INFO, "\n[COURSE:1][ASSIGNMENT:3] TEST COMPLETE\n");
+	syslog(LOG_INFO, "\n[COURSE:5623][ASSIGNMENT:4] TEST COMPLETE\n");
 }

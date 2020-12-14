@@ -79,8 +79,8 @@ void main(void)
 	clock_gettime(MY_CLOCK_TYPE, &current_time_res);
 	current_time_res = realtime(&current_time_res);
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:4] Start High Rate Sequencer\n");
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:4] System has %d processors and %d available.\n", get_nprocs_conf(), get_nprocs());
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] Start High Rate Sequencer\n");
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] System has %d processors and %d available.\n", get_nprocs_conf(), get_nprocs());
 
 	CPU_ZERO(&cpu_all);
 	for (int i = 0; i < NUM_CPU_CORES; i++)
@@ -88,7 +88,7 @@ void main(void)
 		CPU_SET(i, &cpu_all);
 	}
 
-	syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:4] Using cpu = %d from total available.\n", CPU_COUNT(&cpu_all));
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] Using cpu = %d from total available.\n", CPU_COUNT(&cpu_all));
 
 
 	if (sem_init(&semS1, 0, 0))
@@ -141,15 +141,15 @@ void main(void)
 
 	if (scope == PTHREAD_SCOPE_SYSTEM)
 	{
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:4] PTHREAD SCOPE SYSTEM\n");
+		syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] PTHREAD SCOPE SYSTEM\n");
 	}
 	else if (scope == PTHREAD_SCOPE_PROCESS)
 	{
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:4] PTHREAD SCOPE PROCESS\n");
+		syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] PTHREAD SCOPE PROCESS\n");
 	}
 	else
 	{
-		syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:4] PTHREAD SCOPE UNKNOWN\n");
+		syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] PTHREAD SCOPE UNKNOWN\n");
 	}
 }
 

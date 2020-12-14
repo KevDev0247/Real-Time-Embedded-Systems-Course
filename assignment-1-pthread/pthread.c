@@ -14,7 +14,7 @@ threadParams_t threadParams[1];
 
 void *pthread(void *threadp) 
 {
-   syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Hello World from Thread!\n");
+   syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:1] Hello World from Thread!\n");
 }
 
 int main (int argc, char *argv[])
@@ -22,7 +22,7 @@ int main (int argc, char *argv[])
    int rc;
    int i = 0;
 
-   syslog(LOG_INFO, "[COURSE:1][ASSIGNMENT:1] Hello World from Main!\n");
+   syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:1] Hello World from Main!\n");
 
    threadParams[i].threadIdx = i;
    pthread_create(&threads[i],
