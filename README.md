@@ -10,7 +10,7 @@
 - Affinity
 - Scheduling policies
 - Sequencing
-- Asymmetric multi-core processing (AMP)
-- Symmetric multi-core processing (SMP)
+- Asymmetric multiprocessing (AMP)
+- Symmetric multiprocessing (SMP)
 - Rate Monotonic Theory
 
