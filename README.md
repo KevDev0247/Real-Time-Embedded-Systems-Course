@@ -1,5 +1,6 @@
 # Real-Time-Embedded-Systems-Course
- Programming Assignments for Real-Time Embedded Systems Course (ECEE 5623) offered by University of Colorado Boulder via the Coursera network
+ Programming Assignments for Real-Time Embedded Systems Course (ECEE 5623) offered by University of Colorado Boulder via the Coursera network.
+ The assignments are implemented in C based on examples given and complied on Raspberry Pi Linux
 
 ## Topics
 - Real time concepts (Hard RT, Soft RT)
