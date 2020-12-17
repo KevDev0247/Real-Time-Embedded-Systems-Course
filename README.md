@@ -6,6 +6,7 @@
 - Linux user space programming
 - POSIX Threads (pTheads)
 - Threads and processes concepts
+- Semaphores
 - Affinity
 - Scheduling policies
 - Sequencing
