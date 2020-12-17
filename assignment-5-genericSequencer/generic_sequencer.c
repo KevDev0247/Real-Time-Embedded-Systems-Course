@@ -15,12 +15,12 @@
 #define USEC_PER_MSEC (1000)
 #define NANOSEC_PER_MSEC (1000000)
 #define NANOSEC_PER_SEC (1000000000)
-#define NUM_CPU_CORES (1)
+#define CPU_CORES_COUNT (1)
 #define TRUE (1)
 #define FALSE (0)
 
 #define _GNU_SOURCE
-#define NUM_THREADS (7+1)
+#define THREADS_COUNT (7+1)
 #define MY_CLOCK_TYPE CLOCK_MONOTONIC_RAW
 
 int abortProgram = FALSE;
@@ -61,10 +61,10 @@ void main(void)
 	cpu_set_t cpu_thread;
 	cpu_set_t cpu_all;
 
-	pthread_t threads[NUM_THREADS];
-	threadParams_t threadParams[NUM_THREADS];
-	pthread_attr_t rt_sched_attr[NUM_THREADS];
-	struct sched_param rt_param[NUM_THREADS];
+	pthread_t threads[THREADS_COUNT];
+	threadParams_t threadParams[THREADS_COUNT];
+	pthread_attr_t rt_sched_attr[THREADS_COUNT];
+	struct sched_param rt_param[THREADS_COUNT];
 
 	pid_t main_pid;
 	pthread_attr_t main_attr;
@@ -83,7 +83,7 @@ void main(void)
 	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] System has %d processors and %d available.\n", get_nprocs_conf(), get_nprocs());
 
 	CPU_ZERO(&cpu_all);
-	for (int i = 0; i < NUM_CPU_CORES; i++)
+	for (int i = 0; i < CPU_CORES_COUNT; i++)
 	{
 		CPU_SET(i, &cpu_all);
 	}
@@ -150,6 +150,35 @@ void main(void)
 	else
 	{
 		syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] PTHREAD SCOPE UNKNOWN\n");
+	}
+
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] rt_prio_max = %d\n", rt_prio_max);
+	syslog(LOG_INFO, "[COURSE:5623][ASSIGNMENT:5] rt_prio_min = %d\n", rt_prio_min);
+
+	for (i = 0; i < THREADS_COUNT; i++)
+	{
+		if (i % 3 == 0)
+		{
+			CPU_ZERO(&cpu_thread);
+			cpu_idx = (3);
+			CPU_SET(cpu_idx, &cpu_thread);
+		}
+		else
+		{
+			CPU_ZERO(&cpu_thread);
+			cpu_idx = (2);
+			CPU_SET(cpu_idx, &cpu_thread);
+		}
+
+		rc = pthread_attr_init(&rt_sched_attr[i]);
+		rc = pthread_attr_setinheritsched(&rt_sched_attr[i], PTHREAD_EXPLICIT_SCHED);
+		rc = pthread_attr_setschedpolicy(&rt_sched_attr[i], SCHED_FIFO);
+		rc = pthread_attr_setaffinity_np(&rt_sched_attr[i], sizeof(cpu_set_t), &cpu_thread);
+
+		rc_param[i].sched_priority = rt_prio_max - 1;
+		pthread_attr_setschedparam(&rt_sched_attr[i], &rt_param[i]);
+
+		threadParams[i].threadIdx = i;
 	}
 }
 
