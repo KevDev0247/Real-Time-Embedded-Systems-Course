@@ -2,6 +2,7 @@
  Programming Assignments and Labs for Real-Time Embedded Systems Course (ECEE 5623) offered by University of Colorado Boulder via the Coursera network
 
 ## Topics
+- Real time concepts (Hard RT, Soft RT)
 - Linux user space programming
 - POSIX Threads (pTheads)
 - Affinity
