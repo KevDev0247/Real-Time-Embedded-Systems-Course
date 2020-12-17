@@ -8,9 +8,10 @@
 - Threads and processes concepts
 - Semaphores
 - Affinity
-- Scheduling policies
+- Scheduling policies in Linux
 - Sequencing
 - Asymmetric multiprocessing (AMP)
 - Symmetric multiprocessing (SMP)
-- Rate Monotonic Theory
+- Rate Monotonic Scheduling
+- Rate Monotonic Analysis (RMS-LUB: Rate Monotonic Scheduling Least Upper Bound)
 
