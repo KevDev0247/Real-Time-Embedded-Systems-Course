@@ -5,12 +5,11 @@
 ## Topics
 - Real time concepts (Hard RT, Soft RT)
 - Linux user space programming
-- POSIX Threads (pTheads)
+- POSIX Threads (pThreads)
 - Threads and processes concepts
 - Semaphores
 - Affinity
 - Scheduling policies in Linux
-- Sequencing
 - Asymmetric multiprocessing (AMP)
 - Symmetric multiprocessing (SMP)
 - Rate Monotonic Scheduling
